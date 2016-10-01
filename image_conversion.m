@@ -12,5 +12,6 @@ matlabIm2bw = im2bw(grayscaleTreeImage, treshholdLevel);
 imshow(matlabIm2bw);
 
 figure
-customIm2bw = custom_im2bw(grayscaleTreeImage, treshholdLevel);
+customGrayScale = custom_ind2gray(treeImage, treeColorMap);
+customIm2bw = custom_im2bw(customGrayScale, treshholdLevel);
 imshow(customIm2bw);
