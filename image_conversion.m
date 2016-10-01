@@ -1,11 +1,16 @@
-load trees;             %# Load the image data
-I = ind2gray(X,map);    %# Convert indexed to grayscale
-level = graythresh(I);  %# Compute an appropriate threshold
-BW = im2bw(I,level);
-imshow(BW);
+%# Load the image data
+load trees;           
+% change the naming of the variables
+treeImage = X;
+treeColorMap = map;
+
+%# Convert indexed to grayscale
+grayscaleTreeImage = ind2gray(treeImage, treeColorMap); 
+%# Compute an appropriate threshold
+treshholdLevel = graythresh(grayscaleTreeImage);  
+matlabIm2bw = im2bw(grayscaleTreeImage, treshholdLevel);
+imshow(matlabIm2bw);
 
 figure
-picture = imread('peppers.png');
-TRESHOLD = 128;
-picture = custom_im2bw(picture, TRESHOLD);
-imshow(picture);
+customIm2bw = custom_im2bw(grayscaleTreeImage, treshholdLevel);
+imshow(customIm2bw);
