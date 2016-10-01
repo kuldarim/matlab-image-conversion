@@ -5,13 +5,17 @@ treeImage = X;
 treeColorMap = map;
 
 %# Convert indexed to grayscale
-grayscaleTreeImage = ind2gray(treeImage, treeColorMap); 
+matlabInd2Gray = ind2gray(treeImage, treeColorMap); 
 %# Compute an appropriate threshold
-treshholdLevel = graythresh(grayscaleTreeImage);  
-matlabIm2bw = im2bw(grayscaleTreeImage, treshholdLevel);
-imshow(matlabIm2bw);
+treshholdLevel = graythresh(matlabInd2Gray);  
+matlabIm2bw = im2bw(matlabInd2Gray, treshholdLevel);
 
-figure
-customGrayScale = custom_ind2gray(treeImage, treeColorMap);
-customIm2bw = custom_im2bw(customGrayScale, treshholdLevel);
-imshow(customIm2bw);
+customInd2Gray = custom_ind2gray(treeImage, treeColorMap);
+customIm2bw = custom_im2bw(customInd2Gray, treshholdLevel);
+
+%// Show colour image as well as resulting gray image
+figure; 
+subplot(2,2,1); imshow(matlabInd2Gray); title('matlabInd2Gray');
+subplot(2,2,2); imshow(customInd2Gray); title('customInd2Gray');
+subplot(2,2,3); imshow(matlabIm2bw); title('matlabIm2bw');
+subplot(2,2,4); imshow(customIm2bw); title('customIm2bw');
