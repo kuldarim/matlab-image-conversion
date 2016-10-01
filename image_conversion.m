@@ -4,14 +4,17 @@ load trees;
 treeImage = X;
 treeColorMap = map;
 
-% Convert indexed to grayscale
+% Convert indexed to grayscale using matlab function
 matlabGray = ind2gray(treeImage, treeColorMap); 
-% Compute an appropriate threshold
-treshholdLevel = graythresh(matlabGray);  
+% Compute an appropriate threshold using matlab function
+treshholdLevel = graythresh(matlabGray);
+% Compute an appropriate threshold using matlab function
 matlabIm2bw = im2bw(matlabGray, treshholdLevel);
 
+% Convert indexed to grayscale using custom function
 customInd2Gray = custom_ind2gray(treeImage, treeColorMap);
 customTreshholLevel = 0.4980;
+% Convert indexed to bw using custom function
 customIm2bw = custom_im2bw(customInd2Gray, customTreshholLevel);
 
 figure; 
