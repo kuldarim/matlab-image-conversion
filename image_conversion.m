@@ -46,17 +46,21 @@ customBWUint8 = uint8(customIm2bw * 110);
 figure;imshow(customBWUint8, colorMap);
 
 % ------------------COMPARE---------------------------------------------
-
+RGB = ind2rgb(image, map);
+RGBMatlabGray = ind2rgb(matlabGrayUint8, colorMap);
+RGBCustomGray = ind2rgb(customGrayUint8, colorMap);
+RGBMatlabBW = ind2rgb(matlabBWUint8, colorMap);
+RGBCustomBW = ind2rgb(customBWUint8, colorMap);
 %compare gray
 
 % % Calculate snr values of matlab
-% [ps1, snr1] = psnr(matlabGrayUint8, image);
-% fprintf('\n The matlabGrayUint8 SNR value is %0.4f \n', snr1);
-% [ps2, snr2] = psnr(customGrayUint8, image);
-% fprintf('\n The customGrayUint8 SNR value is %0.4f \n', snr2);
+[ps1, snr1] = psnr(RGBMatlabGray, RGB);
+fprintf('\n The RGBMatlabGray SNR value is %0.4f \n', snr1);
+[ps2, snr2] = psnr(RGBCustomGray, RGB);
+fprintf('\n The RGBCustomGray SNR value is %0.4f \n', snr2);
 % 
 % %compare bw
-% [ps3, snr3] = psnr(matlabBWUint8, image);
-% fprintf('\n The matlabBWUint8 SNR value is %0.4f \n', snr3);
-% [ps4, snr4] = psnr(customBWUint8, image);
-% fprintf('\n The customBWUint8 SNR value is %0.4f \n', snr4);
+[ps3, snr3] = psnr(RGBMatlabBW, RGB);
+fprintf('\n The RGBMatlabBW SNR value is %0.4f \n', snr3);
+[ps4, snr4] = psnr(RGBCustomBW, RGB);
+fprintf('\n The RGBCustomBW SNR value is %0.4f \n', snr4);
